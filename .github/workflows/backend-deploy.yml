@@ -21,8 +21,8 @@ jobs:
       - name: Construir y Publicar Imagen Docker
         uses: docker/build-push-action@v4
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./Backend_Devops2
+          file: ./Backend_Devops2/Dockerfile
           push: true
           # Publica la imagen usando tu usuario de Docker Hub de forma dinamica y segura
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/innovatech-backend:latest
