@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Instalar todas las dependencias
-RUN npm ci --only=production
+RUN npm install --omit=dev
 COPY . .
 
 # --- Etapa 2: Entorno de Ejecución Seguro (Producción) ---
