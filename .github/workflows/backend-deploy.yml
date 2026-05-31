@@ -3,26 +3,25 @@ name: Backend CD Pipeline
 on:
   push:
     branches:
-      - deploy # Restringido estrictamente a la rama exigida por la rúbrica
+      - deploy 
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Descargar codigo del repositorio
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Iniciar sesion en Docker Hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Construir y Publicar Imagen Docker
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile
           push: true
-          # Publica la imagen usando tu usuario de Docker Hub de forma dinamica y segura
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/innovatech-backend:latest
